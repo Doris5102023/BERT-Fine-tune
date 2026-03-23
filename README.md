@@ -1,92 +1,96 @@
-# 🐻 BERT Fine-Tuning for SST-2 😊
-An easy guide to BERT + fine-tuning, with code to fine-tune BERT/DistilBERT on SST-2 dataset!
+# 📝 BERT Fine-Tuning for SST-2
+This project implements the fine-tuning of BERT and DistilBERT on the **SST-2 (Stanford Sentiment Treebank)** binary sentiment classification task, with complete data processing, training, evaluation, and result analysis.
 
 ---
 
-## 🎀 What is BERT?
-BERT (Bidirectional Encoder Representations from Transformers) is like a **multilingual bear** who read tons of books (text data) and learned to understand words in context!
+## 🧠 What is BERT?
+BERT (**Bidirectional Encoder Representations from Transformers**) is a pre-trained language model based on the Transformer encoder architecture. It learns deep contextualized word representations by jointly conditioning on both left and right context in all layers.
 
-### 🧸 Core Features of BERT
-| Feature | Explanation |
-|---------|------------------|
-| 🔄 Bidirectional | Unlike a one-way train 🚂, BERT reads words from LEFT → RIGHT AND RIGHT → LEFT (understands "apple" in "eat apple" vs "apple phone"!) |
-| 🧠 Transformer Encoder | BERT’s brain 🧠—uses "self-attention" to hug 🫂 important words (e.g., in "I love this movie", it focuses on "love"!) |
-| 📚 Pre-trained + Fine-tuned | First learns from big books (pre-training), then studies small workbooks (fine-tuning) for specific tasks (like sentiment analysis!) |
-| 🥞 Layered Structure | BERT-base has 12 layers (like 12 pancakes 🥞)—each layer learns deeper meaning! |
+### 🔍 Core Features of BERT
+| Feature | Description |
+|---------|-------------|
+| 🔄 Bidirectional | Captures context from both directions, enabling deeper language understanding compared to unidirectional models. |
+| 🧠 Transformer Encoder | Uses multi-head self-attention to model dependencies between words regardless of their position. |
+| 📚 Pre-trained & Fine-tuned | First pre-trained on large-scale corpora with general language objectives; then fine-tuned on downstream tasks. |
+| 🥞 Layered Architecture | BERT-base consists of 12 transformer layers, enabling hierarchical feature extraction. |
 
-### 🍪 How BERT Learns (Pre-training Tasks)
-1. **Masked Language Modeling (MLM)**  
-   Hide some words (e.g., "I [MASK] this movie") and let BERT guess the hidden word → like fill-in-the-blank games 🎮!
-2. **Next Sentence Prediction (NSP)**  
-   Let BERT guess if two sentences are related (e.g., "I ate breakfast" → "I drank milk" = YES ✅; "I ate breakfast" → "Mars is red" = NO ❌)
+### 📌 Pre-training Tasks of BERT
+1. **Masked Language Modeling (MLM)**
+   Randomly masks a portion of input tokens and trains the model to predict the masked tokens, enabling strong contextual understanding.
+
+2. **Next Sentence Prediction (NSP)**
+   Trains the model to classify whether two sentences are consecutive in the original corpus, helping capture inter-sentence relationships.
 
 ---
 
-## 🐾 What is Fine-Tuning? (Like Teaching a Bear New Tricks!)
-Fine-tuning is when we take the pre-trained BERT (smart bear 🐻) and teach it to do a **specific task** (e.g., sentiment analysis) with small task-specific data!
+## 🔧 What is Fine-Tuning?
+Fine-tuning adapts a **pre-trained BERT model** to a specific downstream task (e.g., sentiment classification) using task‑labeled data. The model retains general linguistic knowledge and adjusts its parameters slightly to fit task distribution.
 
 ### 🎯 Why Fine-Tuning?
-- Pre-trained BERT knows general language rules (like a bear who knows all forest languages 🌲)
-- Fine-tuning adapts BERT to your task (teach the bear to recognize "happy" vs "sad" sentences 😊😢)
-- Saves time: no need to train a model from scratch (like teaching a bear to dance 💃 instead of teaching it to walk first!)
+- Leverages powerful pre-trained contextual representations.
+- Requires significantly less data and computation than training from scratch.
+- Achieves strong performance on most NLP tasks with minimal modification.
 
-### 🍡 Fine-Tuning Process for Sentiment Analysis
+### 🧩 Fine-Tuning Pipeline for Sentiment Analysis
 ```
 flowchart LR
-    A[Pre-trained BERT 🐻] --> B[Add Task Head 🎩] (Add a small neural network for classification)
-    B --> C[Feed SST-2 Data 📄] (Sentences + labels: 0=negative 😞, 1=positive 😊)
-    C --> D[Adjust Weights 🪜] (Tweak BERT’s brain a little—don’t forget old knowledge!)
-    D --> E[Trained Model 🐼] (Now BERT can judge if a sentence is happy/sad!)
+    A[Pre-trained BERT] --> B[Add Classification Head]
+    B --> C[Feed SST-2 Data]
+    C --> D[Update Model Parameters]
+    D --> E[Fine-tuned Sentiment Classifier]
 ```
 
-### 🧁 Key Tips for Fine-Tuning
-1. **Low Learning Rate** → Like feeding the bear small honey drops 🍯 (don’t overwhelm it!)
-2. **Small Batch Size** → Teach the bear 16 sentences at a time (not 1000!)
-3. **Few Epochs** → Train for 3-5 rounds (the bear gets bored if trained too long 🥱)
-4. **DistilBERT** → A smaller bear 🐹 (6 layers) with 90% of BERT’s ability—faster!
+### 📎 Key Fine-Tuning Settings
+- Small learning rate (typically 2e−5) to avoid catastrophic forgetting.
+- Moderate batch size for stable optimization.
+- Limited epochs (3–5) to prevent overfitting.
+- Lightweight variants (e.g., DistilBERT) for efficiency.
 
 ---
 
-## 🚀 How to Use This Code?
-### 📋 Requirements
+## 🚀 How to Use This Project
+### 📋 Dependencies
 ```bash
 pip install torch transformers datasets pandas numpy
 ```
 
-### 📂 Dataset Setup
-1. Put SST-2 dataset (train.tsv/dev.tsv/test.tsv) in `./data/SST2` folder 📁
-2. Modify `DATA_DIR` in the code to your dataset path
+### 📂 Dataset Preparation
+1. Place the SST-2 dataset (`train.tsv`, `dev.tsv`, `test.tsv`) into `./data/SST2`.
+2. Set `DATA_DIR` in the script to match your local path.
 
-### 🏃 Run the Code
+### 🏃 Run Training & Evaluation
 ```bash
 python main.py
 ```
 
-### 📊 Output
-- A CSV file (`SST2_finetune_results.csv`) with accuracy/F1 scores 📈
-- Console output with model comparison (BERT vs DistilBERT)
-- Trained models saved in `./output/` folder 📦
+### 📊 Outputs
+- Test-set accuracy and F1 scores.
+- Results exported to `SST2_finetune_results.csv`.
+- Model comparison between BERT and DistilBERT.
+- Trained model checkpoints saved to `./output/`.
 
 ---
 
-## 🐻 Comparison: BERT vs DistilBERT
-| Metric | BERT-base 🐻 | DistilBERT 🐹 |
-|--------|--------------|---------------|
-| ⏱️ Training Time | Slow (like a bear walking 🐢) | Fast (like a squirrel running 🐿️) |
-| 🧠 Parameters | 110M (big brain) | 66M (small but smart brain) |
-| 🎯 Accuracy | Higher (90%+) | Slightly lower (88%+) but close! |
-| 💾 Memory | More (needs big backpack 🎒) | Less (fits in small pocket 🧺) |
+## 📊 Comparison: BERT-base vs DistilBERT
+| Metric | BERT-base | DistilBERT |
+|--------|-----------|-------------|
+| ⏱️ Training Time | Longer | Shorter (≈40–50% faster) |
+| 🧠 Parameters | 110M | 66M |
+| 🎯 Accuracy | Higher | Slightly lower but close |
+| 💾 Memory Usage | Higher | Lower |
+
+DistilBERT retains approximately 97% of BERT’s performance while being smaller, faster, and more efficient.
 
 ---
 
-## 🎨 Fun Facts
-- BERT was created by Google in 2018 (like a teddy bear 🧸 from Google Store!)
-- DistilBERT is a "distilled" version of BERT (like mini bear candies 🍬)
-- Fine-tuning BERT on SST-2 takes ~5 mins on GPU (enough time to eat a popsicle 🍧!)
+## 📌 Summary
+This project provides a complete, reproducible pipeline for fine-tuning BERT‑family models on SST‑2 sentiment analysis. The experimental results show that:
+- BERT‑base delivers higher accuracy.
+- DistilBERT offers an excellent trade‑off between performance and efficiency.
+
+Both models are widely used in real-world NLP systems for text classification applications.
 
 ---
 
-## ✨ License
-This code is as free as a bear playing in the forest 🌳—use it for homework/learning!
-
----
+## 📄 License
+This project is for educational and academic use only.
