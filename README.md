@@ -1,13 +1,13 @@
 # 🐻 BERT Fine-Tuning for SST-2 😊
-A cute & easy guide to BERT + fine-tuning, with code to fine-tune BERT/DistilBERT on SST-2 dataset!
+An easy guide to BERT + fine-tuning, with code to fine-tune BERT/DistilBERT on SST-2 dataset!
 
 ---
 
-## 🎀 What is BERT? (In Cute Words!)
+## 🎀 What is BERT?
 BERT (Bidirectional Encoder Representations from Transformers) is like a **multilingual bear** who read tons of books (text data) and learned to understand words in context!
 
 ### 🧸 Core Features of BERT
-| Feature | Cute Explanation |
+| Feature | Explanation |
 |---------|------------------|
 | 🔄 Bidirectional | Unlike a one-way train 🚂, BERT reads words from LEFT → RIGHT AND RIGHT → LEFT (understands "apple" in "eat apple" vs "apple phone"!) |
 | 🧠 Transformer Encoder | BERT’s brain 🧠—uses "self-attention" to hug 🫂 important words (e.g., in "I love this movie", it focuses on "love"!) |
@@ -43,7 +43,7 @@ flowchart LR
 1. **Low Learning Rate** → Like feeding the bear small honey drops 🍯 (don’t overwhelm it!)
 2. **Small Batch Size** → Teach the bear 16 sentences at a time (not 1000!)
 3. **Few Epochs** → Train for 3-5 rounds (the bear gets bored if trained too long 🥱)
-4. **DistilBERT** → A smaller bear 🐹 (6 layers) with 90% of BERT’s ability—faster and cuter!
+4. **DistilBERT** → A smaller bear 🐹 (6 layers) with 90% of BERT’s ability—faster!
 
 ---
 
