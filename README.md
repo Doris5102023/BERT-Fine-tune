@@ -31,7 +31,7 @@ Fine-tuning is when we take the pre-trained BERT (smart bear 🐻) and teach it 
 - Saves time: no need to train a model from scratch (like teaching a bear to dance 💃 instead of teaching it to walk first!)
 
 ### 🍡 Fine-Tuning Process for Sentiment Analysis
-```mermaid
+```
 flowchart LR
     A[Pre-trained BERT 🐻] --> B[Add Task Head 🎩] (Add a small neural network for classification)
     B --> C[Feed SST-2 Data 📄] (Sentences + labels: 0=negative 😞, 1=positive 😊)
