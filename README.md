@@ -69,7 +69,7 @@ python main.py
 
 ---
 
-## 🐻 Cute Comparison: BERT vs DistilBERT
+## 🐻 Comparison: BERT vs DistilBERT
 | Metric | BERT-base 🐻 | DistilBERT 🐹 |
 |--------|--------------|---------------|
 | ⏱️ Training Time | Slow (like a bear walking 🐢) | Fast (like a squirrel running 🐿️) |
