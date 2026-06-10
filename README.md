@@ -9,10 +9,10 @@ BERT (**Bidirectional Encoder Representations from Transformers**) is a pre-trai
 ### 🔍 Core Features of BERT
 | Feature | Description |
 |---------|-------------|
-| 🔄 Bidirectional | Captures context from both directions, enabling deeper language understanding compared to unidirectional models. |
-| 🧠 Transformer Encoder | Uses multi-head self-attention to model dependencies between words regardless of their position. |
-| 📚 Pre-trained & Fine-tuned | First pre-trained on large-scale corpora with general language objectives; then fine-tuned on downstream tasks. |
-| 🥞 Layered Architecture | BERT-base consists of 12 transformer layers, enabling hierarchical feature extraction. |
+|  Bidirectional | Captures context from both directions, enabling deeper language understanding compared to unidirectional models. |
+|  Transformer Encoder | Uses multi-head self-attention to model dependencies between words regardless of their position. |
+|  Pre-trained & Fine-tuned | First pre-trained on large-scale corpora with general language objectives; then fine-tuned on downstream tasks. |
+|  Layered Architecture | BERT-base consists of 12 transformer layers, enabling hierarchical feature extraction. |
 
 ### 📌 Pre-training Tasks of BERT
 1. **Masked Language Modeling (MLM)**
@@ -74,10 +74,10 @@ python main.py
 ## 📊 Comparison: BERT-base vs DistilBERT
 | Metric | BERT-base | DistilBERT |
 |--------|-----------|-------------|
-| ⏱️ Training Time | Longer | Shorter (≈40–50% faster) |
-| 🧠 Parameters | 110M | 66M |
-| 🎯 Accuracy | Higher | Slightly lower but close |
-| 💾 Memory Usage | Higher | Lower |
+|  Training Time | Longer | Shorter (≈40–50% faster) |
+|  Parameters | 110M | 66M |
+|  Accuracy | Higher | Slightly lower but close |
+|  Memory Usage | Higher | Lower |
 
 DistilBERT retains approximately 97% of BERT’s performance while being smaller, faster, and more efficient.
 
